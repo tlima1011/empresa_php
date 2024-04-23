@@ -36,12 +36,11 @@
                 <th scope="col">Telefone</th>
                 <th scope="col">E-mail</th>
                 <th scope="col">Data de Nascimento</th>
+                <th scope="col">Funções</th> 
               </tr>
             </thead>
             <tbody>
               <?php
-                date_default_timezone_set('America/Sao_Paulo'); 
-                date('d/m/Y'); 
                 while($linha = mysqli_fetch_assoc($dados)){ 
                   $cod_pessoa = $linha['cod_pessoa']; 
                   $nome = $linha['nome']; 
@@ -49,13 +48,18 @@
                   $telefone = $linha['telefone']; 
                   $email = $linha['email']; 
                   $data_nascimento = $linha['data_nascimento']; 
-                  echo
-                  "<tr>
+                  $data_nascimento = mostra_data($data_nascimento); 
+
+                  echo "<tr>
                     <th scope='row'>$nome</th>
                     <td>$endereco</td>
                     <td>$telefone</td>
                     <td>$email</td>
                     <td>$data_nascimento</td>
+                    <td>
+                      <a href="pesquisa.php" class="btn btn-success btn-sm">Editar</a>
+                      <a href="pesquisa.php" class="btn btn-danger btn-sm">Excluir</a>
+                    </td>
                   </tr>";
                 }
               ?>
